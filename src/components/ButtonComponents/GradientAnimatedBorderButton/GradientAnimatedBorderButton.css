@@ -1,0 +1,26 @@
+.gradient-animated-border-button {
+    position: relative;
+    display: inline-block;
+    background: white;
+    color: black;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  
+  .gradient-animated-border-button::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--gradient-colors));
+    background-size: 200% 200%;
+    background-position: 0% 0%;
+    transition: background-position var(--animation-duration) ease;
+    z-index: -1;
+  }
+  
+  .gradient-animated-border-button:hover::before {
+    background-position: 100% 100%;
+  }

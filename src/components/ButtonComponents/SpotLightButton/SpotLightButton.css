@@ -1,0 +1,36 @@
+.spotlight-button {
+    position: relative;
+    width: 100%;
+    max-width: 20rem;          /* 320px */
+    overflow: hidden;
+    border-radius: 0.5rem;     /* rounded-lg */
+    background-color: #0f172a; /* slate-950 */
+    padding: 0.75rem 1rem;      /* py-3 px-4 */
+    font-size: 1.125rem;        /* text-lg */
+    font-weight: 500;           /* font-medium */
+    color: white;
+    cursor: pointer;
+  }
+  
+  /* Label above the backdrop, with mix-blend for the effect */
+  .spotlight-button__label {
+    position: relative;
+    z-index: 10;
+    pointer-events: none;
+    mix-blend-mode: difference;
+  }
+  
+  /* The circular “spotlight” behind the text */
+  .spotlight-button__backdrop {
+    position: absolute;
+    top: 50%;
+    left: 50%;                           /* initial center */
+    width: 8rem;                         /* 128px */
+    height: 8rem;                        /* 128px */
+    border-radius: 50%;
+    background-color: #f1f5f9;           /* slate-100 */
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: left 0.25s ease-out;     /* smooth follow */
+  }
+  
