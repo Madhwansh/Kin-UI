@@ -1,18 +1,20 @@
 .animated-border-button {
-    position: relative;
-    padding: 0.5em 1em;
-    background: white;
-    color: black;              /* ← set default label color */
-    border: 2px solid transparent;
-    cursor: pointer;
-    overflow: hidden;
-    transition:
-      color 0.3s ease,
-      border-color 0.3s ease;
-  }
-  
-  .animated-border-button:hover {
-    border-color: #0070f3;
-    color: #0070f3;            /* ← on hover text matches border */
-  }
-  
+  /* CSS vars set via inline style on the component */
+  /* --btn-bg, --btn-color, --btn-border */
+
+  position: relative;
+  padding: 0.5em 1em;
+  background: var(--btn-bg);
+  color: var(--btn-color);
+  border: 2px solid transparent;
+  cursor: pointer;
+  overflow: hidden;
+  transition: 
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.animated-border-button:hover {
+  border-color: var(--btn-border);
+  color: var(--btn-border);
+}

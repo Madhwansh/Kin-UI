@@ -1,31 +1,34 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, forwardRef } from 'react';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import './SpotLightButton.css';
 
-const SpotLightButton = ({
+const SpotLightButton = forwardRef(({
   children,
-  style = {},
-  className = '',
+  spotlightColor   = '#f1f5f9',  // default backdrop color
+  backgroundColor  = '#0f172a',  // default button bg
+  textColor        = '#ffffff',  // default label color
+  className        = '',
+  style            = {},
   ...motionProps
-}) => {
-  const btnRef = useRef(null);
+}, ref) => {
+  const btnRef  = useRef(null);
   const spanRef = useRef(null);
 
   useEffect(() => {
-    const btn = btnRef.current;
+    const btn      = btnRef.current;
     const backdrop = spanRef.current;
     if (!btn || !backdrop) return;
 
     const handleMouseMove = (e) => {
-      const rect = btn.getBoundingClientRect();
-      const offsetX = e.clientX - rect.left;               // absolute cursor pos
-      const percent = (offsetX / rect.width) * 100;       // [0–100]%
-      backdrop.style.left = `${percent}%`;                // CSS handles the animation
+      const rect    = btn.getBoundingClientRect();
+      const offsetX = e.clientX - rect.left;
+      const percent = (offsetX / rect.width) * 100;
+      backdrop.style.left = `${percent}%`;
     };
 
     const handleMouseLeave = () => {
-      backdrop.style.left = '50%';                        // reset to center
+      backdrop.style.left = '50%';
     };
 
     btn.addEventListener('mousemove', handleMouseMove);
@@ -36,11 +39,17 @@ const SpotLightButton = ({
     };
   }, []);
 
+  const cssVars = {
+    '--spotlight-color':   spotlightColor,
+    '--button-bg':         backgroundColor,
+    '--button-text-color': textColor
+  };
+
   return (
     <motion.button
       ref={btnRef}
       className={`spotlight-button ${className}`}
-      style={style}
+      style={{ ...cssVars, ...style }}
       {...motionProps}
     >
       <span className="spotlight-button__label">
@@ -52,13 +61,24 @@ const SpotLightButton = ({
       />
     </motion.button>
   );
-};
+});
 
 SpotLightButton.propTypes = {
-  children:  PropTypes.node.isRequired,
-  style:     PropTypes.object,
-  className: PropTypes.string,
-  // any Framer Motion props (whileHover, whileTap, etc.) are passed through
+  /** Button label/content */
+  children:        PropTypes.node.isRequired,
+  /** Color of the moving spotlight circle */
+  spotlightColor:  PropTypes.string,
+  /** Button background color */
+  backgroundColor: PropTypes.string,
+  /** Button text color */
+  textColor:       PropTypes.string,
+  /** Additional Tailwind/custom classes */
+  className:       PropTypes.string,
+  /** Inline style overrides */
+  style:           PropTypes.object,
+  /** Framer Motion props (whileHover, whileTap, etc.) */
 };
+
+SpotLightButton.displayName = 'SpotLightButton';
 
 export default SpotLightButton;

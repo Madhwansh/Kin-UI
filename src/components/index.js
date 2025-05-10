@@ -3,3 +3,5 @@ export { default as AnimatedBorderButton } from "./ButtonComponents/AnimatedBord
 export { default as GradientAnimatedBorderButton } from "./ButtonComponents/GradientAnimatedBorderButton/GradientAnimatedBorderButton";
 
 export { default as SpotLightButton } from "./ButtonComponents/SpotLightButton/SpotLightButton";
+
+export { default as BouncyButton } from "./ButtonComponents/BouncyButton/BouncyButton";

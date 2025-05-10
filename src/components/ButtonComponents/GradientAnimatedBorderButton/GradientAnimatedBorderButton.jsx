@@ -1,64 +1,59 @@
-import React, { forwardRef } from "react";
-import { motion } from "framer-motion";
-import PropTypes from "prop-types";
-import "./GradientAnimatedBorderButton.css";
+import React, { forwardRef } from 'react';
+import PropTypes from 'prop-types';
+import './GradientAnimatedBorderButton.css';
 
-const sizeMap = {
-  small: { padding: "0.25em 0.5em", fontSize: "0.8rem" },
-  medium: { padding: "0.5em 1em", fontSize: "1rem" },
-  large: { padding: "0.75em 1.5em", fontSize: "1.2rem" },
-};
+const GradientAnimatedBorderButton = forwardRef(({
+  children,
+  animationSpeed         = '3s',   // longer for smoother loop
+  backgroundColor        = 'transparent',
+  hoverBackgroundColor   = null,   // optional
+  borderGradientColor    = 'linear-gradient(115deg,#4fcf70,#fad648,#a767e5,#12bcfe,#44ce7b)',
+  textColor              = '#000',
+  hoverTextColor         = null,   // optional
+  className              = '',
+  style                  = {},
+  onClick,
+  disabled               = false,
+  ...rest
+}, ref) => {
+  const cssVars = {
+    '--animation-duration': animationSpeed,
+    '--linear-gradient':    borderGradientColor,
+    '--btn-bg':             backgroundColor,
+    '--btn-text-color':     textColor,
+    '--btn-hover-bg':       hoverBackgroundColor || backgroundColor,
+    '--btn-hover-text':     hoverTextColor    || textColor
+  };
 
-const GradientAnimatedBorderButton = forwardRef(
-  (
-    {
-      children,
-      animationSpeed = 0.5, // seconds
-      gradient = ["#ff6ec4", "#7873f5", "#4ade80"], // default colors
-      size = "medium", // small | medium | large
-      className = "",
-      style = {},
-      onClick,
-      disabled = false,
-      ...motionProps
-    },
-    ref
-  ) => {
-    const gradientCSS = gradient.join(", ");
-    const animationDuration = `${animationSpeed}s`;
-    const sizeStyles = sizeMap[size] || {};
-
-    return (
-      <motion.button
-        ref={ref}
-        className={`gradient-animated-border-button ${className}`}
-        style={{
-          "--gradient-colors": gradientCSS,
-          "--animation-duration": animationDuration,
-          ...sizeStyles,
-          ...style,
-        }}
-        onClick={onClick}
-        disabled={disabled}
-        {...motionProps}
-      >
-        {children}
-      </motion.button>
-    );
-  }
-);
+  return (
+    <button
+      ref={ref}
+      type="button"
+      className={`gradient-animated-border-button ${className}`}
+      style={{ ...cssVars, ...style }}
+      onClick={onClick}
+      disabled={disabled}
+      {...rest}
+    >
+      {children}
+    </button>
+  );
+});
 
 GradientAnimatedBorderButton.propTypes = {
-  children: PropTypes.node.isRequired,
-  animationSpeed: PropTypes.number,
-  gradient: PropTypes.arrayOf(PropTypes.string),
-  size: PropTypes.oneOf(["small", "medium", "large"]),
-  className: PropTypes.string,
-  style: PropTypes.object,
-  onClick: PropTypes.func,
-  disabled: PropTypes.bool,
+  children:            PropTypes.node.isRequired,
+  animationSpeed:      PropTypes.string,
+  backgroundColor:     PropTypes.string,
+  hoverBackgroundColor:PropTypes.string,
+  borderGradientColor: PropTypes.string,
+  textColor:           PropTypes.string,
+  hoverTextColor:      PropTypes.string,
+  className:           PropTypes.string,
+  style:               PropTypes.object,
+  onClick:             PropTypes.func,
+  disabled:            PropTypes.bool
 };
 
-GradientAnimatedBorderButton.displayName = "GradientAnimatedBorderButton";
+GradientAnimatedBorderButton.displayName = 'GradientAnimatedBorderButton';
 
 export default GradientAnimatedBorderButton;
