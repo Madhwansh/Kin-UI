@@ -1,0 +1,33 @@
+.pressed-button {
+    /* CSS vars set via inline style:
+       --btn-bg, --btn-text, --btn-hover-text, --btn-shadow */
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    border: none;
+    cursor: pointer;
+ 
+    transition: all 0.2s ease;
+  }
+  
+  .pressed-button:hover {
+    color: var(--btn-hover-text);
+    box-shadow:
+      -1px -1px 5px rgba(255,255,255,0.6),
+       1px  1px 5px var(--btn-shadow),
+      inset -2px -2px 5px rgba(255,255,255,1),
+      inset  2px  2px 4px var(--btn-shadow);
+  }
+  
+  .pressed-button__icon {
+    flex-shrink: 0;
+  }
+  
+  .pressed-button__label {
+    font-weight: 500;
+  }
+  

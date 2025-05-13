@@ -11,3 +11,7 @@ export { default as ShinyButton } from "./ButtonComponents/ShinyButton/ShinyButt
 export {default as EncryptButton} from "./ButtonComponents/EncryptButton/EncryptButton";
 
 export {default as OutlineButton} from "./ButtonComponents/OutlineButton/OutlineButton";
+
+export {default as PoppedButton} from "./ButtonComponents/PoppedButton/PoppedButton";
+
+export {default as PressedButton} from "./ButtonComponents/PressedButton/PressedButton";
