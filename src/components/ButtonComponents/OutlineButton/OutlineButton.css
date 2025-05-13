@@ -1,0 +1,70 @@
+.outline-button {
+    /* CSS vars supplied via inline style:
+       --btn-bg, --btn-text, --btn-hover-text, --btn-border */
+    position:      relative;
+    display:       inline-block;
+    background:    var(--btn-bg);
+    color:         var(--btn-text);
+    padding:       0.5rem 1rem;      /* px-4 py-2 */
+    font-weight:   500;
+    overflow:      hidden;
+    transition:    color 0.4s ease;
+  }
+  
+  .outline-button:hover {
+    color: var(--btn-hover-text);
+  }
+  
+  /* label stays on top */
+  .outline-button__label {
+    position:      relative;
+    z-index:       1;
+  }
+  
+  /* shared styles for all four sides */
+  .outline-button__side {
+    position:      absolute;
+    background:    var(--btn-border);
+    transition:    all 0.1s ease;
+  }
+  
+  /* top border */
+  .outline-button__top {
+    top: 0; left: 0;
+    height: 2px; width: 0;
+  }
+  .outline-button:hover .outline-button__top {
+    width: 100%;
+    transition-delay: 0s;
+  }
+  
+  /* right border */
+  .outline-button__right {
+    top: 0; right: 0;
+    width: 2px; height: 0;
+  }
+  .outline-button:hover .outline-button__right {
+    height: 100%;
+    transition-delay: 0.1s;
+  }
+  
+  /* bottom border */
+  .outline-button__bottom {
+    bottom: 0; right: 0;
+    height: 2px; width: 0;
+  }
+  .outline-button:hover .outline-button__bottom {
+    width: 100%;
+    transition-delay: 0.2s;
+  }
+  
+  /* left border */
+  .outline-button__left {
+    bottom: 0; left: 0;
+    width: 2px; height: 0;
+  }
+  .outline-button:hover .outline-button__left {
+    height: 100%;
+    transition-delay: 0.3s;
+  }
+  

@@ -1,0 +1,66 @@
+.encrypt-button {
+  /* CSS variables from inline style:
+     --btn-bg, --btn-text-color, --btn-hover-text,
+     --btn-border, --btn-highlight */
+  position:      relative;
+  display:       inline-block;
+  overflow:      hidden;
+  border-radius: 0.5rem;
+  border:        1px solid var(--btn-border);
+  background:    var(--btn-bg);
+  padding:       0.5rem 1rem;
+  font-family:   monospace;
+  font-weight:   500;
+  text-transform: uppercase;
+  color:         var(--btn-text-color);
+  transition:    color 0.2s ease;
+}
+
+.encrypt-button:hover {
+  color: var(--btn-hover-text);
+}
+
+.encrypt-button__inner {
+  position:      relative;
+  z-index:       1;
+  display:       flex;
+  align-items:   center;
+  gap:           0.5rem;
+}
+
+.encrypt-button__icon {
+  flex-shrink: 0;
+}
+
+.encrypt-button__label {
+  white-space: nowrap;
+}
+
+.encrypt-button__gradient {
+  position:      absolute;
+  inset:         0;
+  z-index:       0;
+  transform:     scale(1.25);
+  padding:       1px;
+  background-image: linear-gradient(
+    to top,
+    rgba(var(--btn-highlight-rgb), 0) 40%,
+    var(--btn-highlight) 50%,
+    rgba(var(--btn-highlight-rgb), 0) 60%
+  );
+  /* if highlightColor is rgb or hex, ensure btn-highlight-rgb is defined or stripped */
+  mask:
+    linear-gradient(black, black) content-box,
+    linear-gradient(black, black);
+  -webkit-mask:
+    linear-gradient(black, black) content-box,
+    linear-gradient(black, black);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  opacity:       0;
+  transition:    opacity 0.2s ease;
+}
+
+.encrypt-button:hover .encrypt-button__gradient {
+  opacity: 1;
+}
