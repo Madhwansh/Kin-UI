@@ -1,0 +1,73 @@
+.splash-button {
+    position: relative;
+    display: inline-block;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  
+  .splash-button__wrapper {
+    position: relative;
+    z-index: 10;
+    display: inline-block;
+    padding: 0.75rem 1.25rem;
+    overflow: hidden;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--btn-text);
+    border: 2px solid var(--btn-border);
+    border-radius: 0.5rem;
+    transition: color 0.3s ease-out;
+  }
+  
+  .splash-button:hover .splash-button__wrapper {
+    color: #fff;
+  }
+  
+  .splash-button__bg-layer {
+    position: absolute;
+    inset: 0;
+    background: var(--btn-bg);
+    border-radius: inherit;
+  }
+  
+  .splash-button__splash-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 12rem;
+    height: 12rem;
+    margin-left: -0.5rem;
+    transform-origin: top right;
+    transform: translateX(-100%) translateY(3rem) rotate(-90deg);
+    background: var(--splash-col);
+    transition: transform 0.3s ease;
+  }
+  
+  /* Fixed hover state - keep translate values, only update rotation */
+  .splash-button:hover .splash-button__splash-layer {
+    transform: translateX(-100%) translateY(3rem) rotate(-180deg);
+  }
+  
+  .splash-button__label {
+    position: relative;
+  }
+  
+  .splash-button__shadow {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 3rem;
+    margin-bottom: -0.25rem;
+    margin-right: -0.25rem;
+    background: var(--splash-col);
+    border-radius: 0.5rem;
+    transition: margin 0.2s linear;
+  }
+  
+  .splash-button:hover .splash-button__shadow {
+    margin-bottom: 0;
+    margin-right: 0;
+  }

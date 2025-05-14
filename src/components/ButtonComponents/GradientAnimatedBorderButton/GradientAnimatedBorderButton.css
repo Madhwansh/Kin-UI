@@ -1,42 +1,49 @@
-.gradient-animated-border-button {
-  /* CSS vars provided inline:
-     --btn-bg, --btn-text-color, --btn-hover-bg, --btn-hover-text,
-     --linear-gradient, --animation-duration */
-  --border-width: 2px;
+.gradient-border-btn {
+  --padding: 1px;
+  --border-radius: 9999px;
 
   position: relative;
-  display: inline-block;
-  padding: 8px;
-  box-sizing: border-box;
-
-  /* two-layer background: solid fill + gradient border */
-  background-image:
-    linear-gradient(var(--btn-bg), var(--btn-bg)),
-    var(--linear-gradient);
-  background-origin:   padding-box, border-box;
-  background-clip:     padding-box, border-box;
-  background-size:     auto, 200% 100%;
-  background-position: 0 0, 0 0;
-
-  border: var(--border-width) solid transparent;
-  color: var(--btn-text-color);
-
-  /* permanent border animation */
-  animation: gradient-move var(--animation-duration) linear infinite;
-
-  /* smooth text & background color transitions */
-  transition:
-    color 0.3s ease,
-    background-color 0.3s ease;
+  border: none;
+  margin: 0;
+  padding: var(--padding);
+  border-radius: var(--border-radius);
+  background: transparent;
+  cursor: pointer;
+  overflow: hidden;
 }
 
-.gradient-animated-border-button:hover {
-  /* swap to hover colors */
-  background-color: var(--btn-hover-bg);
-  color:            var(--btn-hover-text);
+.gradient-border-btn__background {
+  position: absolute;
+  top: -150%;
+  left: -150%;
+  width: 400%;
+  height: 400%;
+  background-image: var(--border-gradient);
+  animation: rotate-border var(--animation-speed) linear infinite;
 }
 
-@keyframes gradient-move {
-  0%   { background-position: 0 0,      0   0; }
-  100% { background-position: 0 0,   -100%  0; }
+.gradient-border-btn__content {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+@keyframes rotate-border {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Motion styles */
+.gradient-border-btn {
+  transition: transform 0.2s ease;
 }

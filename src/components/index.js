@@ -15,3 +15,5 @@ export {default as OutlineButton} from "./ButtonComponents/OutlineButton/Outline
 export {default as PoppedButton} from "./ButtonComponents/PoppedButton/PoppedButton";
 
 export {default as PressedButton} from "./ButtonComponents/PressedButton/PressedButton";
+
+export {default as SplashButton} from "./ButtonComponents/SplashButton/SplashButton";
